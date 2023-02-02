@@ -31,10 +31,10 @@ namespace BankAccount
         }
 
         /// <summary>
-        /// Adds a specified amount of money to the account, and returns the new balance
+        /// Adds a specified amount of money to the account, and returns the updated balance
         /// </summary>
         /// <param name="depositAmount">The positive amount to deposit into the account</param>
-        /// <returns>The new balance after the deposit was made</returns>
+        /// <returns>The updated balance after the deposit was made</returns>
         public double Deposit(double depositAmount)
         {
             // Make sure deposit amount is more than zero
@@ -51,13 +51,18 @@ namespace BankAccount
         }
 
         /// <summary>
-        /// Removes a specified amount of money from the account, 
-        /// as long as that amount is present
+        /// Removes a specified amount of money from the account, as long as that amount is present in the account,
+        /// and returns the updated balance
         /// </summary>
         /// <param name="withdrawlAmount">The positive amount to withdraw from the account balance</param>
-        public void Withdraw(double withdrawlAmount)
+        /// <returns>The updated balance after the withdrawal was made</returns>
+        public double Withdraw(double withdrawalAmount)
         {
-            throw new NotImplementedException();
+            // Withdraw the specified amount
+            Balance -= withdrawalAmount;
+
+            // Return the balance
+            return Balance;
         }
     }
 }
