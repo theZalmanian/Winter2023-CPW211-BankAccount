@@ -47,14 +47,13 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
-        public void Deposit_ZeroOrLess_ThrowsArgumentException()
+        [DataRow(-1)]
+        [DataRow(0)]
+        public void Deposit_ZeroOrLess_ThrowsArgumentException(double invalidDepositAmount)
         {
             // Arrange
             // Create a test account
             Account testAccount = new("Reality Undefined");
-
-            // Setup deposit amount
-            double invalidDepositAmount = -1;
 
             // Assert => Act
             // Attempt to deposit $-1 into the account
