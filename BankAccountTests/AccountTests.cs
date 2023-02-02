@@ -29,7 +29,7 @@ namespace BankAccount.Tests
         {
             // AAA - Arrange, Act, Assert
 
-            // Arrange:
+            // Arrange
             // Create a test account
             Account testAccount = new("Reality Undefined");
 
@@ -44,6 +44,22 @@ namespace BankAccount.Tests
             // Assert 
             // Make sure the return value was $100
             Assert.AreEqual(expectedReturn, returnValue);
+        }
+
+        [TestMethod]
+        public void Deposit_ZeroOrLess_ThrowsArgumentException()
+        {
+            // Arrange
+            // Create a test account
+            Account testAccount = new("Reality Undefined");
+
+            // Setup deposit amount
+            double invalidDepositAmount = -1;
+
+            // Assert => Act
+            // Attempt to deposit $-1 into the account
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (() => testAccount.Deposit(invalidDepositAmount));
         }
     }
 }

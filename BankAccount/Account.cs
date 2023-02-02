@@ -37,6 +37,12 @@ namespace BankAccount
         /// <returns>The new balance after the deposit was made</returns>
         public double Deposit(double depositAmount)
         {
+            // Make sure deposit amount is more than zero
+            if(depositAmount <= 0)
+            {
+                throw new ArgumentOutOfRangeException($"The {nameof(depositAmount)} must be more than 0");
+            }
+
             // Add the given amount to the balance
             Balance += depositAmount;  
             
