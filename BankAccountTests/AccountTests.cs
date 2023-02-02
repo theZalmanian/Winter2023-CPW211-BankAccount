@@ -40,19 +40,19 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
-        public void Deposit_APositiveAmount_ReturnsUpdatedBalance()
+        [DataRow(100)]
+        public void Deposit_APositiveAmount_ReturnsUpdatedBalance(double depositAmount)
         {
-            // Setup deposit amount, and expected return amount
-            double depositAmount = 100;
-            double expectedReturnValue = 100;
+            // Setup expected return amount
+            double expectedReturnAmount = 100;
 
             // Act
             // Deposit $100 into the test account
-            double returnValue = testAccount.Deposit(depositAmount);
+            double returnAmount = testAccount.Deposit(depositAmount);
 
             // Assert 
             // Make sure the return value was $100
-            Assert.AreEqual(expectedReturnValue, returnValue);
+            Assert.AreEqual(expectedReturnAmount, returnAmount);
         }
 
         [TestMethod]
