@@ -14,7 +14,14 @@ namespace BankAccount.Tests
         [TestMethod()]
         public void Deposit_APositiveAmount_AddToBalance()
         {
-            Assert.Fail();
+            // Create a test account
+            Account testAccount = new("Reality Undefined");
+
+            // Deposit $100 into the account
+            testAccount.Deposit(100);
+
+            // Check if the deposit was successful
+            Assert.AreEqual(100, testAccount.Balance);
         }
     }
 }
