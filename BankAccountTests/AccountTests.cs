@@ -11,6 +11,20 @@ namespace BankAccount.Tests
     [TestClass]
     public class AccountTests
     {
+        /// <summary>
+        /// The default test account
+        /// </summary>
+        private Account testAccount;
+
+        /// <summary>
+        /// Initializes the default test account
+        /// </summary>
+        [TestInitialize]
+        public void CreateDefaultAccount()
+        {
+            testAccount = new("Reality Redefined");
+        }
+
         [TestMethod]
         [DataRow(9_999.99)]
         [DataRow(100)]
@@ -18,10 +32,7 @@ namespace BankAccount.Tests
         [DataRow(.01)]
         public void Deposit_APositiveAmount_AddToBalance(double depositAmount)
         {
-            // Create a test account
-            Account testAccount = new("Reality Undefined");
-
-            // Deposit $100 into the account
+            // Deposit $100 into the test account
             testAccount.Deposit(depositAmount);
 
             // Check if the deposit was successful
@@ -31,23 +42,17 @@ namespace BankAccount.Tests
         [TestMethod]
         public void Deposit_APositiveAmount_ReturnsUpdatedBalance()
         {
-            // AAA - Arrange, Act, Assert
-
-            // Arrange
-            // Create a test account
-            Account testAccount = new("Reality Undefined");
-
             // Setup deposit amount, and expected return amount
             double depositAmount = 100;
-            double expectedReturn = 100;
+            double expectedReturnValue = 100;
 
             // Act
-            // Deposit $100 into the account
-            double returnValue = testAccount.Deposit(100);
+            // Deposit $100 into the test account
+            double returnValue = testAccount.Deposit(depositAmount);
 
             // Assert 
             // Make sure the return value was $100
-            Assert.AreEqual(expectedReturn, returnValue);
+            Assert.AreEqual(expectedReturnValue, returnValue);
         }
 
         [TestMethod]
@@ -55,12 +60,8 @@ namespace BankAccount.Tests
         [DataRow(0)]
         public void Deposit_ZeroOrLess_ThrowsArgumentException(double invalidDepositAmount)
         {
-            // Arrange
-            // Create a test account
-            Account testAccount = new("Reality Undefined");
-
             // Assert => Act
-            // Attempt to deposit $-1 into the account
+            // Attempt to deposit $-1 into the test account
             Assert.ThrowsException<ArgumentOutOfRangeException>
                 (() => testAccount.Deposit(invalidDepositAmount));
         }
