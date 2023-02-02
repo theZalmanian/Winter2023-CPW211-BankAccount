@@ -58,7 +58,7 @@ namespace BankAccount.Tests
         [TestMethod]
         [DataRow(-1)]
         [DataRow(0)]
-        public void Deposit_ZeroOrLess_ThrowsArgumentException(double invalidDepositAmount)
+        public void Deposit_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidDepositAmount)
         {
             // Assert => Act
             // Attempt to deposit $-1 into the test account
@@ -88,6 +88,28 @@ namespace BankAccount.Tests
             // Assert
             // Check if the withdrawal was successful
             Assert.AreEqual(expectedBalance, actualBalance);
+        }
+
+        [TestMethod]
+        [DataRow(100, 50)]
+        public void Withdraw_PositiveAmount_ReturnsUpdatedBalance()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [DataRow(-100)]
+        [DataRow(-.01)]
+        [DataRow(0)]
+        public void Withdraw_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidWithdrawalAmount)
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException()
+        {
+            Assert.Fail();
         }
     }
 }
