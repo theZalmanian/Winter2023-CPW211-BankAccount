@@ -65,5 +65,29 @@ namespace BankAccount.Tests
             Assert.ThrowsException<ArgumentOutOfRangeException>
                 (() => testAccount.Deposit(invalidDepositAmount));
         }
+
+        [TestMethod]
+        [DataRow(100, 50)]
+        [DataRow(1000, 500)]
+        public void Withdraw_PositiveAmount_DecreasesBalance(double depositAmount, double withdrawalAmount)
+        {
+            // Arrange
+            // Setup expected balance
+            double expectedBalance = depositAmount - withdrawalAmount;
+
+            // Act
+            // Deposit the specified amount
+            testAccount.Deposit(depositAmount);
+
+            // Withdraw the specified amount
+            testAccount.Withdraw(withdrawalAmount);
+
+            // Get the current balance
+            double actualBalance = testAccount.Balance;
+
+            // Assert
+            // Check if the withdrawal was successful
+            Assert.AreEqual(expectedBalance, actualBalance);
+        }
     }
 }
