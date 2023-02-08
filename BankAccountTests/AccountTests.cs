@@ -161,7 +161,13 @@ namespace BankAccount.Tests
         [TestCategory("Owner")]
         public void Owner_SetAsWhiteSpaceOrEmptyString_ThrowsArgumentException()
         {
-            Assert.Fail();
+            // Attempt to set the test account's Owner name as an empty string
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = string.Empty);
+
+            // Attempt to set the test account's Owner name as white space
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = "   ");
         }
 
         [TestMethod]

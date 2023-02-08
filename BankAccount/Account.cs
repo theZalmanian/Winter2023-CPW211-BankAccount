@@ -30,6 +30,13 @@ namespace BankAccount
                     throw new ArgumentNullException($"{nameof(owner)} may not be null");
                 }
 
+                // Make sure the given name is not an empty string or white space
+                if(value.Trim() == string.Empty)
+                {
+                    throw new ArgumentException($"{nameof(owner)} field may not be blank or composed of whitespace");
+                }
+
+                // Otherwise set the account owner's name as the given value
                 owner = value; 
             } 
         }
