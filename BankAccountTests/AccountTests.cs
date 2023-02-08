@@ -61,7 +61,7 @@ namespace BankAccount.Tests
         public void Deposit_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidDepositAmount)
         {
             // Assert => Act
-            // Attempt to deposit $-1 into the test account
+            // Attempt to deposit an invalid amount into the test account
             Assert.ThrowsException<ArgumentOutOfRangeException>
                 (() => testAccount.Deposit(invalidDepositAmount));
         }
@@ -118,7 +118,10 @@ namespace BankAccount.Tests
         [DataRow(0)]
         public void Withdraw_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidWithdrawalAmount)
         {
-            Assert.Fail();
+            // Assert => Act
+            // Attempt to withdraw an invalid amount from the test account
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (() => testAccount.Withdraw(invalidWithdrawalAmount));
         }
 
         [TestMethod]

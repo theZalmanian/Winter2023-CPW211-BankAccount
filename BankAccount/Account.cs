@@ -58,6 +58,12 @@ namespace BankAccount
         /// <returns>The updated balance after the withdrawal was made</returns>
         public double Withdraw(double withdrawalAmount)
         {
+            // Make sure withdrawal amount is more than zero
+            if (withdrawalAmount <= 0)
+            {
+                throw new ArgumentOutOfRangeException($"The {nameof(withdrawalAmount)} must be more than 0");
+            }
+
             // Withdraw the specified amount
             Balance -= withdrawalAmount;
 
