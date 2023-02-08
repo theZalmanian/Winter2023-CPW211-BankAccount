@@ -57,10 +57,10 @@ namespace BankAccount
         private bool OwnerNameIsValid(string givenName)
         {
             // Setup max character limit
-            int MAX_LENGTH = 20;
+            const int MaxNameLength = 20;
 
             // If given name exceeds max character limit
-            if (givenName.Length > MAX_LENGTH)
+            if (givenName.Length > MaxNameLength)
             {
                 // The given name is not valid
                 return false;
