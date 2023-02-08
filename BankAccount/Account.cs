@@ -36,9 +36,27 @@ namespace BankAccount
                     throw new ArgumentException($"{nameof(owner)} field may not be blank or composed of whitespace");
                 }
 
-                // Otherwise set the account owner's name as the given value
-                owner = value; 
+                // If the given name is valid
+                if(OwnerNameIsValid(value))
+                {
+                    // Set the account owner's name
+                    owner = value; 
+                }
+                else
+                {
+                    throw new ArgumentException($"{nameof(owner)} can be up to 20 characters. No numbers or special characters allowed" );
+                }
             } 
+        }
+
+        /// <summary>
+        /// Checks if the given name is <= 20 characters, 
+        /// and made up of only A - Z, along with whitespace
+        /// </summary>
+        /// <returns>True if the given name is valid; otherwise False</returns>
+        private bool OwnerNameIsValid(string givenName)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

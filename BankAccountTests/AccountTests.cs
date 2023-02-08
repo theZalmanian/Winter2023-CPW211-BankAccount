@@ -167,7 +167,7 @@ namespace BankAccount.Tests
 
             // Attempt to set the test account's Owner name as white space
             Assert.ThrowsException<ArgumentException>
-                (() => testAccount.Owner = "   ");
+                (() => testAccount.Owner = "   "); 
         }
 
         [TestMethod]
