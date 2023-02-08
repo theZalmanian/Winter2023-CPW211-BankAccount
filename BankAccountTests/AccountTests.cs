@@ -185,10 +185,15 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
+        [DataRow("Reality The 1st")] // Contains number
+        [DataRow("Reality Undefined III")] // Over 20 characters
+        [DataRow("#Reality!")] // Contains invalid characters
         [TestCategory("Owner")]
-        public void Owner_InvalidOwnerName_ThrowsArgumentException()
+        public void Owner_InvalidOwnerName_ThrowsArgumentException(string invalidName)
         {
-            Assert.Fail();
+            // Attempt to set the test account's Owner name as the given invalid name
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = invalidName);
         }
     }
 }
