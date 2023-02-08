@@ -146,5 +146,54 @@ namespace BankAccount.Tests
             Assert.ThrowsException<ArgumentException>
                 (() => testAccount.Withdraw(withdrawalAmount));
         }
+
+        [TestMethod]
+        [TestCategory("Owner")]
+        public void Owner_SetAsNull_ThrowsArgumentNullException()
+        {
+            // Assert => Act
+            // Attempt to set the test account's Owner name to null
+            Assert.ThrowsException<ArgumentNullException>
+                (() => testAccount.Owner = null);
+        }
+
+        [TestMethod]
+        [TestCategory("Owner")]
+        public void Owner_SetAsWhiteSpaceOrEmptyString_ThrowsArgumentException()
+        {
+            // Attempt to set the test account's Owner name as an empty string
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = string.Empty);
+
+            // Attempt to set the test account's Owner name as white space
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = "   "); 
+        }
+
+        [TestMethod]
+        [DataRow("Reality U")]
+        [DataRow("Reality Undefined")]
+        [DataRow("Reality Undefined Sr")]
+        [TestCategory("Owner")]
+        public void Owner_SetAsUpto20Characters_SetsSuccessfully(string givenName)
+        {
+            // Set the owner name of the test account as the given name
+            testAccount.Owner = givenName;
+
+            // Check if the name was set successfully
+            Assert.AreEqual(givenName, testAccount.Owner);
+        }
+
+        [TestMethod]
+        [DataRow("Reality The 1st")] // Contains number
+        [DataRow("Reality Undefined III")] // Over 20 characters
+        [DataRow("#Reality!")] // Contains invalid characters
+        [TestCategory("Owner")]
+        public void Owner_InvalidOwnerName_ThrowsArgumentException(string invalidName)
+        {
+            // Attempt to set the test account's Owner name as the given invalid name
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Owner = invalidName);
+        }
     }
 }

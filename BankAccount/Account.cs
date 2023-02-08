@@ -14,7 +14,79 @@ namespace BankAccount
         /// <summary>
         /// The full legal name of the account holders
         /// </summary>
-        public string Owner { get; set; }
+        private string owner;
+
+        /// <summary>
+        /// The full legal name of the account holders
+        /// </summary>
+        public string Owner 
+        {
+            get { return owner; }
+            set 
+            { 
+                // Make sure the given name is not null
+                if(value == null)
+                {
+                    throw new ArgumentNullException($"{nameof(owner)} may not be null");
+                }
+
+                // Make sure the given name is not an empty string or white space
+                if(value.Trim() == string.Empty)
+                {
+                    throw new ArgumentException($"{nameof(owner)} field may not be blank or composed of whitespace");
+                }
+
+                // If the given name is valid
+                if(OwnerNameIsValid(value))
+                {
+                    // Set the account owner's name
+                    owner = value; 
+                }
+                else
+                {
+                    throw new ArgumentException($"{nameof(owner)} can be up to 20 characters. No numbers or special characters allowed" );
+                }
+            } 
+        }
+
+        /// <summary>
+        /// Checks if the given name is <= 20 characters, 
+        /// and made up of only A - Z, along with whitespace
+        /// </summary>
+        /// <returns>True if the given name is valid; otherwise False</returns>
+        private bool OwnerNameIsValid(string givenName)
+        {
+            // Setup max character limit
+            const int MaxNameLength = 20;
+
+            // If given name exceeds max character limit
+            if (givenName.Length > MaxNameLength)
+            {
+                // The given name is not valid
+                return false;
+            }
+
+            // Setup array of legal characters
+            char[] legalCharacters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                                       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+            // Make the given name all lowercase for testing
+            givenName = givenName.ToLower();
+
+            // Run through all characters in given name
+            foreach (char currCharacter in givenName)
+            {
+                // If the current character is not a legal character or whitespace
+                if(!legalCharacters.Contains(currCharacter) && currCharacter != ' ')
+                {
+                    // The given name is not valid
+                    return false;
+                }
+            }
+
+            // Otherwise, the given name is valid
+            return true;
+        }
 
         /// <summary>
         /// The amount of money stored in the account
@@ -25,7 +97,7 @@ namespace BankAccount
         /// Creates an account with the given owner, and a default balance of 0
         /// </summary>
         /// <param name="accountOwner">The full legal name of the customer who owns the account</param>
-        public Account(string accountOwner) 
+        public Account(string accountOwner)
         {
             Owner = accountOwner;
         }
@@ -38,14 +110,14 @@ namespace BankAccount
         public double Deposit(double depositAmount)
         {
             // Make sure deposit amount is more than zero
-            if(depositAmount <= 0)
+            if (depositAmount <= 0)
             {
                 throw new ArgumentOutOfRangeException($"The {nameof(depositAmount)} must be more than 0");
             }
 
             // Add the given amount to the balance
-            Balance += depositAmount;  
-            
+            Balance += depositAmount;
+
             // Return the balance
             return Balance;
         }
@@ -59,7 +131,7 @@ namespace BankAccount
         public double Withdraw(double withdrawalAmount)
         {
             // Make sure withdrawal amount is present in account
-            if(withdrawalAmount > Balance)
+            if (withdrawalAmount > Balance)
             {
                 throw new ArgumentException($"{nameof(withdrawalAmount)} cannot be greater than {nameof(Balance)}");
             }
