@@ -148,24 +148,28 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
+        [TestCategory("Owner")]
         public void Owner_SetAsNull_ThrowsArgumentNullException()
         {
             Assert.Fail();
         }
 
         [TestMethod]
+        [TestCategory("Owner")]
         public void Owner_SetAsWhiteSpaceOrEmptyString_ThrowsArgumentException()
         {
             Assert.Fail();
         }
 
         [TestMethod]
+        [TestCategory("Owner")]
         public void Owner_SetAsUpto20Characters_SetsSuccessfully()
         {
             Assert.Fail();
         }
 
         [TestMethod]
+        [TestCategory("Owner")]
         public void Owner_InvalidOwnerName_ThrowsArgumentException()
         {
             Assert.Fail();
