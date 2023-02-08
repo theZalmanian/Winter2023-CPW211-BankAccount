@@ -32,7 +32,7 @@ namespace BankAccount.Tests
         [DataRow(.01)]
         public void Deposit_APositiveAmount_AddToBalance(double depositAmount)
         {
-            // Deposit $100 into the test account
+            // Deposit the given amount into the test account
             testAccount.Deposit(depositAmount);
 
             // Check if the deposit was successful
@@ -44,14 +44,14 @@ namespace BankAccount.Tests
         public void Deposit_APositiveAmount_ReturnsUpdatedBalance(double depositAmount)
         {
             // Setup expected return amount
-            double expectedReturnAmount = 100;
+            double expectedReturnAmount = depositAmount;
 
             // Act
-            // Deposit $100 into the test account
+            // Deposit the given amount into the test account
             double returnAmount = testAccount.Deposit(depositAmount);
 
             // Assert 
-            // Make sure the return value was $100
+            // Make sure the return value was as expected
             Assert.AreEqual(expectedReturnAmount, returnAmount);
         }
 
@@ -68,6 +68,7 @@ namespace BankAccount.Tests
 
         [TestMethod]
         [DataRow(100, 50)]
+        [DataRow(125.17, 33.99)]
         [DataRow(1000, 500)]
         public void Withdraw_PositiveAmount_DecreasesBalance(double depositAmount, double withdrawalAmount)
         {
@@ -75,10 +76,10 @@ namespace BankAccount.Tests
             // Setup expected balance
             double expectedBalance = depositAmount - withdrawalAmount;
 
-            // Act
             // Deposit the specified amount
             testAccount.Deposit(depositAmount);
 
+            // Act
             // Withdraw the specified amount
             testAccount.Withdraw(withdrawalAmount);
 
@@ -92,9 +93,23 @@ namespace BankAccount.Tests
 
         [TestMethod]
         [DataRow(100, 50)]
-        public void Withdraw_PositiveAmount_ReturnsUpdatedBalance()
+        [DataRow(199.99, 50.31)]
+        public void Withdraw_PositiveAmount_ReturnsUpdatedBalance(double depositAmount, double withdrawalAmount)
         {
-            Assert.Fail();
+            // Arrange
+            // Setup expected return amount
+            double expectedReturnAmount = depositAmount - withdrawalAmount;
+
+            // Deposit the specified amount
+            testAccount.Deposit(depositAmount);
+
+            // Act 
+            // Withdraw the specified amount
+            double returnAmount = testAccount.Withdraw(withdrawalAmount);
+
+            // Assert
+            // Make sure the return value was as expected
+            Assert.AreEqual(expectedReturnAmount, returnAmount);
         }
 
         [TestMethod]
