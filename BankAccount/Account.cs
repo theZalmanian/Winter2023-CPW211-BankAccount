@@ -56,6 +56,16 @@ namespace BankAccount
         /// <returns>True if the given name is valid; otherwise False</returns>
         private bool OwnerNameIsValid(string givenName)
         {
+            // Setup max character limit
+            int MAX_LENGTH = 20;
+
+            // If given name exceeds max character limit
+            if (givenName.Length > MAX_LENGTH)
+            {
+                // The given name is not valid
+                return false;
+            }
+
             // Setup array of legal characters
             char[] legalCharacters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                                        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
