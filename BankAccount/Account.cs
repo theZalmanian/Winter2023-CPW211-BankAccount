@@ -14,7 +14,16 @@ namespace BankAccount
         /// <summary>
         /// The full legal name of the account holders
         /// </summary>
-        public string Owner { get; set; }
+        private string owner;
+
+        /// <summary>
+        /// The full legal name of the account holders
+        /// </summary>
+        public string Owner 
+        {
+            get { return owner; }
+            set { owner = value; } 
+        }
 
         /// <summary>
         /// The amount of money stored in the account
@@ -25,7 +34,7 @@ namespace BankAccount
         /// Creates an account with the given owner, and a default balance of 0
         /// </summary>
         /// <param name="accountOwner">The full legal name of the customer who owns the account</param>
-        public Account(string accountOwner) 
+        public Account(string accountOwner)
         {
             Owner = accountOwner;
         }
@@ -38,14 +47,14 @@ namespace BankAccount
         public double Deposit(double depositAmount)
         {
             // Make sure deposit amount is more than zero
-            if(depositAmount <= 0)
+            if (depositAmount <= 0)
             {
                 throw new ArgumentOutOfRangeException($"The {nameof(depositAmount)} must be more than 0");
             }
 
             // Add the given amount to the balance
-            Balance += depositAmount;  
-            
+            Balance += depositAmount;
+
             // Return the balance
             return Balance;
         }
@@ -59,7 +68,7 @@ namespace BankAccount
         public double Withdraw(double withdrawalAmount)
         {
             // Make sure withdrawal amount is present in account
-            if(withdrawalAmount > Balance)
+            if (withdrawalAmount > Balance)
             {
                 throw new ArgumentException($"{nameof(withdrawalAmount)} cannot be greater than {nameof(Balance)}");
             }
