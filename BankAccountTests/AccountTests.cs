@@ -30,6 +30,7 @@ namespace BankAccount.Tests
         [DataRow(100)]
         [DataRow(1.99)]
         [DataRow(.01)]
+        [TestCategory("Deposit")]
         public void Deposit_APositiveAmount_AddToBalance(double depositAmount)
         {
             // Deposit the given amount into the test account
@@ -41,6 +42,7 @@ namespace BankAccount.Tests
 
         [TestMethod]
         [DataRow(100)]
+        [TestCategory("Deposit")]
         public void Deposit_APositiveAmount_ReturnsUpdatedBalance(double depositAmount)
         {
             // Setup expected return amount
@@ -58,6 +60,7 @@ namespace BankAccount.Tests
         [TestMethod]
         [DataRow(-1)]
         [DataRow(0)]
+        [TestCategory("Deposit")]
         public void Deposit_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidDepositAmount)
         {
             // Assert => Act
@@ -70,6 +73,7 @@ namespace BankAccount.Tests
         [DataRow(100, 50)]
         [DataRow(125.17, 33.99)]
         [DataRow(1000, 500)]
+        [TestCategory("Withdraw")]
         public void Withdraw_PositiveAmount_DecreasesBalance(double depositAmount, double withdrawalAmount)
         {
             // Arrange
@@ -94,6 +98,7 @@ namespace BankAccount.Tests
         [TestMethod]
         [DataRow(100, 50)]
         [DataRow(199.99, 50.31)]
+        [TestCategory("Withdraw")]
         public void Withdraw_PositiveAmount_ReturnsUpdatedBalance(double depositAmount, double withdrawalAmount)
         {
             // Arrange
@@ -116,6 +121,7 @@ namespace BankAccount.Tests
         [DataRow(-100)]
         [DataRow(-.01)]
         [DataRow(0)]
+        [TestCategory("Withdraw")]
         public void Withdraw_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidWithdrawalAmount)
         {
             // Assert => Act
@@ -128,6 +134,7 @@ namespace BankAccount.Tests
         [DataRow(10, 10.01)]
         [DataRow(10, 50)]
         [DataRow(1000, 5000)]
+        [TestCategory("Withdraw")]
         public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException(double depositAmount, double withdrawalAmount)
         {
             // Arrange
