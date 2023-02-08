@@ -164,5 +164,11 @@ namespace BankAccount.Tests
         {
             Assert.Fail();
         }
+
+        [TestMethod]
+        public void Owner_InvalidOwnerName_ThrowsArgumentException()
+        {
+            Assert.Fail();
+        }
     }
 }
