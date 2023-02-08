@@ -125,9 +125,19 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
-        public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException()
+        [DataRow(10, 10.01)]
+        [DataRow(10, 50)]
+        [DataRow(1000, 5000)]
+        public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException(double depositAmount, double withdrawalAmount)
         {
-            Assert.Fail();
+            // Arrange
+            // Deposit the specified amount
+            testAccount.Deposit(depositAmount);
+
+            // Assert => Act
+            // Attempt to withdraw an unavailable amount from the test account
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Withdraw(withdrawalAmount));
         }
     }
 }
