@@ -146,5 +146,23 @@ namespace BankAccount.Tests
             Assert.ThrowsException<ArgumentException>
                 (() => testAccount.Withdraw(withdrawalAmount));
         }
+
+        [TestMethod]
+        public void Owner_SetAsNull_ThrowsArgumentNullException()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Owner_SetAsWhiteSpaceOrEmptyString_ThrowsArgumentException()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Owner_SetAsUpto20Characters_SetsSuccessfully()
+        {
+            Assert.Fail();
+        }
     }
 }
