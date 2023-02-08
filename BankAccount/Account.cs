@@ -60,7 +60,22 @@ namespace BankAccount
             char[] legalCharacters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                                        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-            throw new NotImplementedException();
+            // Make the given name all lowercase for testing
+            givenName = givenName.ToLower();
+
+            // Run through all characters in given name
+            foreach (char currCharacter in givenName)
+            {
+                // If the current character is not a legal character or whitespace
+                if(!legalCharacters.Contains(currCharacter) && currCharacter != ' ')
+                {
+                    // The given name is not valid
+                    return false;
+                }
+            }
+
+            // Otherwise, the given name is valid
+            return true;
         }
 
         /// <summary>
