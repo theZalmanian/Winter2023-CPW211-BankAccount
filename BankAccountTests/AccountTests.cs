@@ -61,7 +61,7 @@ namespace BankAccount.Tests
         public void Deposit_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidDepositAmount)
         {
             // Assert => Act
-            // Attempt to deposit $-1 into the test account
+            // Attempt to deposit an invalid amount into the test account
             Assert.ThrowsException<ArgumentOutOfRangeException>
                 (() => testAccount.Deposit(invalidDepositAmount));
         }
@@ -118,13 +118,26 @@ namespace BankAccount.Tests
         [DataRow(0)]
         public void Withdraw_ZeroOrLess_ThrowsArgumentOutOfRangeException(double invalidWithdrawalAmount)
         {
-            Assert.Fail();
+            // Assert => Act
+            // Attempt to withdraw an invalid amount from the test account
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (() => testAccount.Withdraw(invalidWithdrawalAmount));
         }
 
         [TestMethod]
-        public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException()
+        [DataRow(10, 10.01)]
+        [DataRow(10, 50)]
+        [DataRow(1000, 5000)]
+        public void Withdraw_MoreThanAvailableBalance_ThrowsArgumentException(double depositAmount, double withdrawalAmount)
         {
-            Assert.Fail();
+            // Arrange
+            // Deposit the specified amount
+            testAccount.Deposit(depositAmount);
+
+            // Assert => Act
+            // Attempt to withdraw an unavailable amount from the test account
+            Assert.ThrowsException<ArgumentException>
+                (() => testAccount.Withdraw(withdrawalAmount));
         }
     }
 }
