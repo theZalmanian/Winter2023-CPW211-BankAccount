@@ -171,10 +171,17 @@ namespace BankAccount.Tests
         }
 
         [TestMethod]
+        [DataRow("Reality U")]
+        [DataRow("Reality Undefined")]
+        [DataRow("Reality Undefined Sr")]
         [TestCategory("Owner")]
-        public void Owner_SetAsUpto20Characters_SetsSuccessfully()
+        public void Owner_SetAsUpto20Characters_SetsSuccessfully(string givenName)
         {
-            Assert.Fail();
+            // Set the owner name of the test account as the given name
+            testAccount.Owner = givenName;
+
+            // Check if the name was set successfully
+            Assert.AreEqual(givenName, testAccount.Owner);
         }
 
         [TestMethod]
