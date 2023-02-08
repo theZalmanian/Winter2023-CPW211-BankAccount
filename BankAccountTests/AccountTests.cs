@@ -151,7 +151,10 @@ namespace BankAccount.Tests
         [TestCategory("Owner")]
         public void Owner_SetAsNull_ThrowsArgumentNullException()
         {
-            Assert.Fail();
+            // Assert => Act
+            // Attempt to set the test account's Owner name to null
+            Assert.ThrowsException<ArgumentNullException>
+                (() => testAccount.Owner = null);
         }
 
         [TestMethod]

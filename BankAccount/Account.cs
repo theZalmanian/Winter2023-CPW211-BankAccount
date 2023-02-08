@@ -22,7 +22,16 @@ namespace BankAccount
         public string Owner 
         {
             get { return owner; }
-            set { owner = value; } 
+            set 
+            { 
+                // Make sure the given name is not null
+                if(value == null)
+                {
+                    throw new ArgumentNullException($"{nameof(owner)} may not be null");
+                }
+
+                owner = value; 
+            } 
         }
 
         /// <summary>
